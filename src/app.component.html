@@ -1,0 +1,38 @@
+<div class="relative min-h-screen flex flex-col">
+  <!-- Main Content -->
+  <div class="flex-grow">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Footer (Visible Developer Contact) -->
+  <footer class="bg-gray-900 text-gray-400 py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-sm">
+        <p class="font-bold text-white mb-1">Ajude - Ajuda Mútua SaaS</p>
+        <p>Conectando quem precisa com quem pode ajudar.</p>
+      </div>
+      
+      <div class="text-center md:text-right text-xs md:text-sm">
+        <p class="mb-1">Desenvolvido com carinho.</p>
+        <p class="text-white font-mono bg-gray-800 px-3 py-1 rounded inline-block">
+          <i class="fas fa-code mr-2"></i>Dev Contact: 94991233751
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Urgent / SOS Floating Action Button -->
+  <button 
+    (click)="openUrgentModal()"
+    class="fixed bottom-6 right-6 z-40 bg-red-600 hover:bg-red-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transform transition-all hover:scale-110 focus:outline-none focus:ring-4 focus:ring-red-300 animate-pulse-slow group"
+    aria-label="Ajuda Urgente">
+    <i class="fas fa-ambulance text-2xl group-hover:rotate-12 transition-transform"></i>
+    <span class="absolute -top-2 -right-2 bg-yellow-400 text-red-900 text-xs font-bold px-2 py-0.5 rounded-full shadow-sm border border-red-500">SOS</span>
+  </button>
+
+  <!-- Urgent Modal Overlay -->
+  <app-urgent-modal 
+    [isOpen]="isUrgentModalOpen()" 
+    (close)="closeUrgentModal()">
+  </app-urgent-modal>
+</div>
