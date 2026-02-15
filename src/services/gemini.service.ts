@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { GoogleGenAI, Type } from '@google/genai';
 
@@ -8,7 +9,8 @@ export class GeminiService {
   private ai: GoogleGenAI;
 
   constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env['API_KEY'] || '' });
+    // Strictly follow the dot notation as required for build tools to replace the env var
+    this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   }
 
   // Used by the Urgent Modal

@@ -40,7 +40,9 @@ declare var L: any; // Leaflet Declaration
                <button (click)="switchTab('services')" [class.border-b-2]="currentTab() === 'services'" [class.border-black]="currentTab() === 'services'" class="h-full flex flex-col items-center justify-center px-2 min-w-[60px] md:min-w-[80px] text-gray-500 hover:text-black transition-all relative group">
                   <i class="fas fa-home text-lg mb-0.5" [class.text-black]="currentTab() === 'services'"></i>
                   <span class="text-[10px] hidden md:block">Início</span>
-                  <div class="absolute bottom-0 w-full h-0.5 bg-black scale-x-0 group-hover:scale-x-100 transition-transform" *ngIf="currentTab() !== 'services'"></div>
+                  @if (currentTab() !== 'services') {
+                    <div class="absolute bottom-0 w-full h-0.5 bg-black scale-x-0 group-hover:scale-x-100 transition-transform"></div>
+                  }
                </button>
                
                <button (click)="switchTab('communities')" [class.border-b-2]="currentTab() === 'communities'" [class.border-black]="currentTab() === 'communities'" class="h-full flex flex-col items-center justify-center px-2 min-w-[60px] md:min-w-[80px] text-gray-500 hover:text-black transition-all relative group">
@@ -211,7 +213,8 @@ declare var L: any; // Leaflet Declaration
                    @if(showAiInput() || userProblem()) {
                       <textarea 
                           #aiInput
-                          [(ngModel)]="userProblem" 
+                          [ngModel]="userProblem()"
+                          (ngModelChange)="userProblem.set($event)"
                           rows="3" 
                           class="w-full p-2 text-sm border-none outline-none resize-none bg-transparent placeholder-gray-400" 
                           placeholder="Ex: Minha pia está vazando e preciso de um encanador urgente..."></textarea>
